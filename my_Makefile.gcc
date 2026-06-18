@@ -5,15 +5,15 @@ CC = gcc
 CFLAGS = -Wall -g -O3 -fcommon -Wno-implicit-function-declaration -Wno-int-conversion -std=gnu89
 
 # Added -lblas to link against the math library that contains ddot_
-LIBRARIES = -lm -lblas -lnlopt
+LIBRARIES = -lm -lblas $(shell pkg-config --cflags --libs nlopt)
 
-EXECNAME = SweeD
+EXECNAME = MySweeD
 
 OBJS = SweeD.o SweeD_Input.o SweeD_Kernel.o SweeD_SFS.o SweeD_CLR.o My_SweeD_BFGS.o
 
 all: $(EXECNAME)
      
-SweeD:	$(OBJS)
+MySweeD:$(OBJS)
 	$(CC) $(CFLAGS) -o $(EXECNAME) $(OBJS) $(LIBRARIES)
 
 SweeD.o: SweeD.c

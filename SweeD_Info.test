@@ -25,15 +25,15 @@
 		Discarded sites:	0
 		Kept sites:	5773
 
-		Processing:		0.09 seconds
+		Processing:		0.12 seconds
 
 		Position:		0.000000e+00
-		Likelihood:		1.134223e+00
+		Likelihood:		1.160631e+05
 		StartPos:		0.000000e+00
-		EndPos:			1.000000e+02
-		Alpha:			5.963891e-02
+		EndPos:			9.996000e+05
+		Alpha:			2.241024e-06
 
 
- Total elapsed time 0.09 seconds.
+ Total elapsed time 0.12 seconds.
 
 
