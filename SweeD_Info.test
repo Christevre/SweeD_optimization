@@ -13,7 +13,7 @@
 
  Command:
 
-	 ./SweeD -name test -input mytest.sf -grid 3
+	 ./MySweeD -name test -input mytest.sf -grid 50
 
 
 
@@ -25,15 +25,15 @@
 		Discarded sites:	0
 		Kept sites:	5773
 
-		Processing:		0.09 seconds
+		Processing:		0.12 seconds
 
-		Position:		0.000000e+00
-		Likelihood:		1.134223e+00
-		StartPos:		0.000000e+00
-		EndPos:			1.000000e+02
-		Alpha:			5.963891e-02
+		Position:		7.548000e+05
+		Likelihood:		2.960711e+00
+		StartPos:		7.548000e+05
+		EndPos:			7.549000e+05
+		Alpha:			2.230322e+01
 
 
- Total elapsed time 0.09 seconds.
+ Total elapsed time 0.12 seconds.
 
 

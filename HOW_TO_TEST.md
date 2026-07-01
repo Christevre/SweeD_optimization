@@ -35,7 +35,7 @@ Position      Likelihood      Alpha           StartPos  EndPos
 999600.0000   1.144950e+05    2.307607e-06    0.0000    999600.0000
 ```
 
-**Difference:** Likelihood is 100,000x different! ❌
+**Difference:** Likelihood is 100,000x different! 
 
 ## How to Test the FIX
 

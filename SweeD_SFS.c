@@ -241,10 +241,26 @@ t_sfs getLikelihoodSFS(t_sfs *tmpSFS)
 	return likelihood;
 }
 
+/* Diagnostic counter: total number of likelihood evaluations across the whole
+ * run. Both optimizers (original L-BFGS-B and NLopt) call this same function,
+ * so the count is a fair "iterations" comparison. Printed at program exit only
+ * when the environment variable SWEED_COUNT_EVALS is set, so normal runs are
+ * unaffected. */
+unsigned long sweed_eval_count = 0;
+
+static void __attribute__((destructor)) sweed_print_eval_count(void)
+{
+	if (getenv("SWEED_COUNT_EVALS"))
+		fprintf(stderr, "SWEED_EVALS: %lu likelihood evaluations\n",
+			sweed_eval_count);
+}
+
 t_sfs p_likelihood_freq(const t_sfs * logSFS)
 {
 	t_sfs likelihood;
-  
+
+	sweed_eval_count++;
+
 	getSFSfromLogSFS (logSFS, alignment->tmpSFS);
 
 	likelihood = getLikelihoodSFS(alignment->tmpSFS);

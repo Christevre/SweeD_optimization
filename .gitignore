@@ -1,0 +1,11 @@
+# Compiled object files
+*.o
+
+# Compiled binaries
+SweeD
+MySweeD
+
+# SweeD runtime output files
+SweeD_Report.*
+SweeD_Info.*
+SweeD_Warnings.*

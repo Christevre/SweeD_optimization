@@ -3,7 +3,7 @@
 # Τρέξε το μέσα στον φάκελο του project, μετά: git add -A && git commit && git push
 set -e
 
-echo "==> 1/4  Δημιουργία .gitignore"
+echo " .gitignore"
 cat > .gitignore << 'EOF'
 # Compiled object files
 *.o
@@ -18,7 +18,7 @@ SweeD_Info.*
 SweeD_Warnings.*
 EOF
 
-echo "==> 2/4  Δημιουργία test2.sf"
+echo "==> 2/4  creation of test2.sf"
 cat > test2.sf << 'EOF'
 position	x	n	folded
 0	2	100	0
@@ -64,16 +64,16 @@ position	x	n	folded
 20000	38	100	0
 EOF
 
-echo "==> 3/4  Δημιουργία compare_results.sh"
+echo "==> 3/4  compare  compare_results.sh"
 cat > compare_results.sh << 'EOF'
 #!/bin/bash
-# Συγκρίνει MySweeD (NLopt) vs SweeD (original)
-# Χρήση: ./compare_results.sh <input.sf> <grid>
+# Compare MySweeD (NLopt) vs SweeD (original)
+# Use: ./compare_results.sh <input.sf> <grid>
 INPUT=${1:-mytest.sf}
 GRID=${2:-50}
-echo "Τρέχω original SweeD..."
+echo "Execute original SweeD..."
 ./SweeD   -name _orig  -input "$INPUT" -grid "$GRID" >/dev/null 2>&1
-echo "Τρέχω MySweeD (NLopt)..."
+echo "Execute MySweeD (NLopt)..."
 ./MySweeD -name _nlopt -input "$INPUT" -grid "$GRID" >/dev/null 2>&1
 echo ""
 echo "Position      | Original     | NLopt        | Diff %   | Alpha match"
@@ -92,7 +92,7 @@ awk '
   }
 ' SweeD_Report._orig SweeD_Report._nlopt
 echo ""
-echo "Σύνολο evaluations (iterations):"
+echo "Amount of evaluations (iterations):"
 SWEED_COUNT_EVALS=1 ./SweeD   -name _c -input "$INPUT" -grid "$GRID" >/dev/null 2>_o.txt
 SWEED_COUNT_EVALS=1 ./MySweeD -name _c -input "$INPUT" -grid "$GRID" >/dev/null 2>_n.txt
 echo "  Original: $(grep -o '[0-9]* likelihood' _o.txt)"
@@ -145,14 +145,14 @@ t_sfs p_likelihood_freq(const t_sfs * logSFS)
  \treturn -likelihood;
 }"""
     if old not in s:
-        print("    ΣΦΑΛΜΑ: δεν βρέθηκε η αρχική p_likelihood_freq - ίσως έχει ήδη τροποποιηθεί")
+        print(" error no p_likelihood_freq has been found")
         raise SystemExit(1)
     open(f, "w").write(s.replace(old, new))
-    print("    OK - ο counter προστέθηκε")
+    print("  ok counter has been added")
 PYEOF
 
 echo ""
-echo "==> Έτοιμο! Τώρα:"
+echo "==> Done! Now:"
 echo "    make -f Makefile.gcc clean && make -f Makefile.gcc"
 echo "    make -f Makefile.MySweeD.gcc clean && make -f Makefile.MySweeD.gcc"
 echo "    ./compare_results.sh mytest.sf 50"

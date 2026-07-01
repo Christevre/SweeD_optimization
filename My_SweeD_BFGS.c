@@ -196,7 +196,7 @@ double findmax_bfgs(int numpars, double *invec, double (*fun)(const double x[]),
    * values below the optimum is fully resolved and stable (tightening them
    * further does not change the result), so MySweeD lands on the same
    * maximum-likelihood point as the original to within floating-point noise. */
-  nlopt_set_ftol_rel(opt, 1.0e-12);
+  nlopt_set_ftol_rel(opt, 1.0e-10);
   nlopt_set_xtol_rel(opt, 1.0e-10);
   nlopt_set_maxeval(opt, 15000);             /* safety cap on evaluations */
 
