@@ -1,6 +1,6 @@
 #!/bin/bash
-# Συγκρίνει MySweeD (NLopt) vs SweeD (original)
-# Χρήση: ./compare_results.sh <input.sf> <grid>
+# Compares MySweeD (NLopt) vs SweeD (original)
+# How to use: ./compare_results.sh <input.sf> <grid>
 INPUT=${1:-mytest.sf}
 GRID=${2:-50}
 echo "Executing original SweeD..."

@@ -1,12 +1,12 @@
 #!/bin/bash
 # make_test_data.sh - Δημιουργεί μεγάλα test datasets για benchmarking.
-# Χρήση: ./make_test_data.sh
-# Παράγει:
-#   testbig.sf   - 50000 SNPs, n=100  (μεγάλο #SNPs -> κυριαρχεί το CLR scan)
-#   testbign.sf  - 3000 SNPs,  n=1000 (μεγάλο δείγμα -> κυριαρχεί ο optimizer)
-# Όλα με neutral SFS (πιθανότητα συχνότητας ∝ 1/x) και αύξουσες θέσεις.
+# How to use: ./make_test_data.sh
+# Creates:
+#   testbig.sf   - 50000 SNPs, n=100  (big #SNPs -> dominates το CLR scan)
+#   testbign.sf  - 3000 SNPs,  n=1000 )big semple -> dominates optimizer)
+# All with neutral SFS (Frequency Propability 1/x) and raised positions.
 
-echo "Δημιουργία testbig.sf (50000 SNPs, n=100)..."
+echo "Creation testbig.sf (50000 SNPs, n=100)..."
 awk 'BEGIN{
   srand(42); n=100; N=50000;
   tot=0; for(x=1;x<n;x++){ w[x]=1.0/x; tot+=w[x]; }
@@ -17,7 +17,7 @@ awk 'BEGIN{
     print pos"\t"xx"\t"n"\t0"; }
 }' > testbig.sf
 
-echo "Δημιουργία testbign.sf (3000 SNPs, n=1000)..."
+echo "Creation testbign.sf (3000 SNPs, n=1000)..."
 awk 'BEGIN{
   srand(7); n=1000; N=3000;
   tot=0; for(x=1;x<n;x++){ w[x]=1.0/x; tot+=w[x]; }
@@ -28,10 +28,10 @@ awk 'BEGIN{
     print pos"\t"xx"\t"n"\t0"; }
 }' > testbign.sf
 
-echo "Έτοιμα:"
+echo "Ready:"
 echo "  testbig.sf : $(($(wc -l < testbig.sf)-1)) SNPs, n=100"
 echo "  testbign.sf: $(($(wc -l < testbign.sf)-1)) SNPs, n=1000"
 echo ""
-echo "Benchmark (μεγάλο δείγμα, όπου ο optimizer μετράει):"
+echo "Benchmark (big sample, where optimizer counts):"
 echo "  time ./MySweeD -name b -input testbign.sf -grid 20"
 echo "  time ./SweeD   -name b -input testbign.sf -grid 20"
